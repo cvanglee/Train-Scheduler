@@ -17,27 +17,39 @@ $(document).ready(function(){
     // function to calculate when trains will arrive
     var cTime = moment().format('HH:mm');
     console.log(cTime);
-    //   var trainName = "Thomas the Train";
-    //   var destination = "Brendon Dock";
-    //   var firstTime = "23:00";
-    var tFrequency = 4;
+    
+    var tFrequency;
     var tMinutesTilTrain;
     var nextTrain;
 
     function trainScheduler(firstTime){
+        $('#name-input').val("");
+        $('#destination-input').val("");
+        $('#firstTrain-input').val("");
+        $('#frequency-input').val("");
+       
         // First Time 
         var firstTimeConverted = moment(firstTime,"HH:mm").subtract(1,"year");
+        console.log('first time converted', firstTimeConverted);
         // Difference between the times
         var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-        console.log('difference in timed: ', diffTime);
+        console.log('difference in time: ', diffTime);
         // Time apart
         var tRemainder = diffTime % tFrequency;
         console.log('time apart', tRemainder);
-        // Minutes unti the next train
+        // Minutes until the next train
         tMinutesTilTrain = tFrequency - tRemainder;
         console.log('minutes until next train: ', tMinutesTilTrain);
         // Arrival of next train
         nextTrain = moment(moment().add(tMinutesTilTrain, "minutes")).format("hh:mm");
+    
+        $("#displaySchedule").append("<div class='row p-2' id='schedBottom'><div class='col-md-3 train-name border-bottom border-secondary'>" +
+        trainName +
+        "</div><div class='col-md-3 desDiv border-bottom border-secondary'>" + destination +
+        "</div><div class='col-md-2 freqDiv border-bottom border-secondary'>" + tFrequency +
+        "</div><div class='col-md-2 arrival border-bottom border-secondary'>" + nextTrain +
+        "</div><div class='col-md-2 min-2-next border-bottom border-secondary'>" + tMinutesTilTrain +
+        "</div>"); 
         
         console.log('next train: ', nextTrain);
        
@@ -51,25 +63,25 @@ $(document).ready(function(){
         var firstTrain = $('#firstTrain-input').val().trim();
         tFrequency = $('#frequency-input').val().trim();
 
-        trainScheduler(firstTrain);
+        // trainScheduler(firstTrain);
         database.ref().push({
             name: trainName,
             tDestination: destination,
             frequency: tFrequency,
-            min2Next: tMinutesTilTrain,
-            arrivalTime: nextTrain
+            fTrain: firstTrain
             });
-          
+         
     });
 
     database.ref().on("child_added", function(childSnapshot){
-        $("#displaySchedule").append("<div class='row p-2' id='schedBottom'><div class='col-md-3 train-name border-bottom border-secondary'>" +
-        childSnapshot.val().name +
-        "</div><div class='col-md-3 desDiv border-bottom border-secondary'>" + childSnapshot.val().tDestination +
-        "</div><div class='col-md-2 freqDiv border-bottom border-secondary'>" + childSnapshot.val().frequency +
-        "</div><div class='col-md-2 arrival border-bottom border-secondary'>" + childSnapshot.val().arrivalTime +
-        "</div><div class='col-md-2 min-2-next border-bottom border-secondary'>" + childSnapshot.val().min2Next +
-        "</div>"); 
+        firstTrain=childSnapshot.val().fTrain;
+        console.log('first train', firstTrain);
+        tFrequency=parseInt(childSnapshot.val().frequency);
+        console.log('frequency',tFrequency);
+        destination=childSnapshot.val().tDestination;
+        trainName=childSnapshot.val().name;
+        trainScheduler(firstTrain);
+    
     }, function(errorObject){
         console.log("Error handled: " + errorObject.code);
     }); 
