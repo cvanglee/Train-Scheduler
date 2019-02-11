@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Link to Moment.js -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <script src="assets/javascript/main.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+
+</head>
+<body>
+    <img src = "assets/images/hiro.jpg" class = "img-fluid float-left" id = 'pic1'/>
+    <div class= "text-center" id = "banner">Sodor Train Schedule</div>
+    <img src = "assets/images/ThomasPic1.jpg" class = "img-fluid float-right" id = 'pic2'/>    
+    <div class = "container mt-5">
+        
+        <div class = "row">
+            <div class = "col-md-12 mt-5" id = "sHeader">
+                <h2>Current Train Schedule</h2>
+            </div>
+        </div>
+        <div class = "row p-2" id="schedBody">
+            <div class = "col-md-3 cHeading border-bottom border-secondary">
+                Train Name
+            </div>
+            <div class = "col-md-3 cHeading border-bottom border-secondary">
+                Destination
+            </div>
+            <div class = "col-md-2 cHeading border-bottom border-secondary">
+                Frequency(min)
+            </div>
+            <div class = "col-md-2 cHeading border-bottom border-secondary">
+                Next Arrival
+            </div>
+            <div class = "col-md-2 cHeading border-bottom border-secondary">
+                Minutes Away
+            </div>
+        </div>
+        <div id = "displaySchedule"></div>
+        <div class = "row">
+            <div class = "col-md-12">
+                <form id="fborder" class="mt-5">
+                    <div id = "new-train" class="add-head pt-2 pb-3 pl-2 text-white"> Add Train</div>
+                    <div class="form-group p-2">
+                    <label for = "train-name">Train Name</label>
+                    <input type = 'text' id = 'name-input' class = 'form-control'>
+                    </div>
+                    <div class="form-group p-2">
+                    <label for = "destination">Destination</label>
+                    <input type = 'text' id = 'destination-input' class = 'form-control'>
+                    </div>
+                    <div class="form-group p-2">
+                    <label for = "firstTrain">First Train Time (HH:mm - Military Time)</label>
+                    <input type = 'text' id = 'firstTrain-input' class = 'form-control'>
+                    </div>
+                    <div class="form-group p-2">
+                    <label for = "freqency">Frequency (min)</label>
+                    <input type = 'text' id = 'frequency-input' class = 'form-control'>
+                    </div>
+                    <button id = 'add-train' type="submit" class="btn m-2">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class='col-md-12'>
+                <img src="assets/images/thomasnfriends2.jpg" class = "img-fluid content-align-center" id = "pic3"/>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

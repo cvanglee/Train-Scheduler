@@ -1,0 +1,62 @@
+#pic1, #pic2 {
+    width: 200px;
+    height: 150px;
+}
+#pic2{
+    margin-top: -75px;
+
+}
+
+#sHeader{
+    color: white;
+    border: 5px solid red;
+    background-color: red;
+    /* margin-left: 10px; */
+   
+    
+}
+#banner {
+    color: rgb(46, 137, 223);
+    font-size: 50px;
+    font-weight: bolder;
+    padding-right: 100px;
+}
+
+h2 {
+    margin-top: 40px;
+}
+
+.cHeading {
+    font-weight: bold;
+    border-bottom: 5px;
+}
+
+/* #schedBottom, #schedBody{
+    border-left: 5px solid blue;
+    border-right: 5px solid blue;      
+} */
+
+/* #displaySchedule {
+    border-bottom: 5px solid blue;
+} */
+
+#new-train {
+    font-weight: bolder;
+    font-size: 20px;
+    background-color:rgb(46, 137, 223);
+}
+
+#fborder {
+    border: 5px solid rgb(46, 137, 223);
+}
+
+#add-train {
+    background-color: rgb(46, 137, 223);
+    color: white;
+}
+
+#pic3 {
+    margin-top: 10px;
+    width: 1200px;
+    height: 200px;
+}
